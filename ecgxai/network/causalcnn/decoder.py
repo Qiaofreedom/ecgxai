@@ -12,7 +12,8 @@ class CausalCNNVDecoder(torch.nn.Module):
         self.in_channels = in_channels
         self.width = width
         self.gaussian_out = gaussian_out
-        self.linear1 = torch.nn.Linear(k, in_channels)
+        self.linear1 = torch.nn.Linear(k, in_channels) 
+        # 这里的k. 在class VAE 里面 def reparameterize(self, mu, sd) 这个函数返回的是 一个值: mu + eps*sd，而不是class CausalCNNVEncoder 里面的两个值: enc_mu, enc_sd 
         self.linear2 = torch.nn.Linear(in_channels, in_channels * width)
         self.causal_cnn = CausalCNN(
             in_channels, channels, depth, out_channels, kernel_size,
