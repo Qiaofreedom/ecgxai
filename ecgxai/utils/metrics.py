@@ -62,7 +62,9 @@ class TMW(BaseMetric):
 
         res = {}
         for label, value in zip(self.out_labels, out):
-            res[label] = value.detach().cpu()
+            res[label] = value.detach().cpu() # detach() 返回一个new Tensor，只不过不再有梯度。
+            # 如果想把CUDA tensor格式的数据改成numpy时，需要先将其转换成cpu float-tensor随后再转到numpy格式。 numpy不能读取CUDA tensor 需要将它转化为 CPU tensor
+            # 所以得写成.cpu().numpy()
 
         return res
 
