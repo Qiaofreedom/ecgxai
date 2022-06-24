@@ -42,9 +42,16 @@ class VAE(BaseSystem):
         """
         if self.std_is_log:
             std = std.exp()
-        eps = torch.normal(torch.zeros_like(mu), torch.ones_like(std))
+        eps = torch.normal(torch.zeros_like(mu), torch.ones_like(std))         
         z = mu + (eps * std)
         return z
+        
+#         torch.normal(mean=0.0, std, out=None) 
+#         参数:
+#         means (Tensor,optional) – 所有分布均值
+#         std (Tensor) – 每个元素的标准差
+#         out (Tensor) – 可选的输出张量
+
 
     def forward(self, x : torch.Tensor, deterministic : bool = False):
         """
