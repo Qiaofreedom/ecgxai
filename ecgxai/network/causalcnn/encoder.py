@@ -61,6 +61,11 @@ class CausalCNNVEncoder(torch.nn.Module):
         dropout (float): The dropout probability between 0 and 1.
         sd_output (bool): Put to true when using this class inside a VAE, as
             an additional output for the SD is added.
+            
+        Takes as input a three-dimensional tensor (`B`, `C`, `L`) where `B` is the
+        batch size, `C` is the number of input channels, and `L` is the length of
+        the input. Outputs a two-dimensional tensor (`B`, `C`).
+        
     """
     def __init__(self, in_channels: int, channels: int, depth: int, reduced_size: int,
                  out_channels: int, kernel_size: int, softplus_eps: float, dropout: float, 
